@@ -11,18 +11,17 @@ class Person(object):
 
 def create_person_list(people: list) -> list:
 
-    persons = []
+    persons = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
-        if person["name"] not in Person.people:
-            new_person = Person(person["name"], person["age"])
+        if person.get("wife") and person["wife"] in Person.people:
+            husband = Person.people[person["name"]]
+            wife = person["wife"]
+            husband.wife = Person.people[wife]
 
-            if person.get("wife") and person["wife"] in Person.people:
-                new_person.wife = Person.people[person["wife"]]
-
-            elif person.get("husband") and person["husband"] in Person.people:
-                new_person.husband = Person.people[person["husband"]]
-
-            persons.append(new_person)
+        elif person.get("husband") and person["husband"] in Person.people:
+            wife = Person.people[person["name"]]
+            husband = person["husband"]
+            husband.husband = Person.people[husband]
 
     return persons
