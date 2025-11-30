@@ -24,5 +24,5 @@ def create_person_list(people: list) -> list:
                 new_person.husband = Person.people[person["husband"]]
 
             persons.append(new_person)
-            
+
     return persons
