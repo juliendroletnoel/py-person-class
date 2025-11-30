@@ -22,6 +22,6 @@ def create_person_list(people: list) -> list:
         elif person.get("husband") and person["husband"] in Person.people:
             wife = Person.people[person["name"]]
             husband = person["husband"]
-            husband.husband = Person.people[husband]
+            wife.husband = Person.people[husband]
 
     return persons
